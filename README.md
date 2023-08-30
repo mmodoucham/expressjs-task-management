@@ -14,7 +14,7 @@ This repository contains a Task Management App API built using ExpressJS and pos
    Clone this repository to your local machine using the following command:
 
 ```bash
-    git clone https://github.com/mmodoucham/expressjs-task-management.git
+git clone https://github.com/mmodoucham/expressjs-task-management.git
 ```
 
 2. **Install Dependencies:**
@@ -70,7 +70,7 @@ The API will be accesible on **`http://localhost:3000`**.
     "id": 1,
     "title": "Sample Task",
     "description": "This is a sample task",
-    "dueDate": "2019-08-24T14:15:22Z"
+    "duedate": "2019-08-24T14:15:22Z"
   }
   // ... other tasks
 ]
@@ -86,7 +86,7 @@ The API will be accesible on **`http://localhost:3000`**.
 {
   "title": "New Task",
   "description": "A new task",
-  "dueDate": "2019-08-24T14:15:22Z"
+  "duedate": "2019-08-24T14:15:22Z"
 }
 ```
 
@@ -97,7 +97,7 @@ The API will be accesible on **`http://localhost:3000`**.
   "id": 5,
   "title": "New Task",
   "description": "A new task",
-  "dueDate": "2019-08-24T14:15:22Z"
+  "duedate": "2019-08-24T14:15:22Z"
 }
 ```
 
@@ -112,7 +112,7 @@ The API will be accesible on **`http://localhost:3000`**.
   "id": 1,
   "title": "Sample Task",
   "description": "This is a sample task",
-  "dueDate": "2019-08-24T14:15:22Z"
+  "duedate": "2019-08-24T14:15:22Z"
 }
 ```
 
@@ -126,7 +126,7 @@ The API will be accesible on **`http://localhost:3000`**.
 {
   "title": "Updated Task",
   "description": "An updated task",
-  "dueDate": "2019-08-24T14:15:22Z"
+  "duedate": "2019-08-24T14:15:22Z"
 }
 ```
 
@@ -137,7 +137,7 @@ The API will be accesible on **`http://localhost:3000`**.
   "id": 1,
   "title": "Updated Task",
   "description": "An updated task",
-  "dueDate": "2019-08-24T14:15:22Z"
+  "duedate": "2019-08-24T14:15:22Z"
 }
 ```
 
@@ -170,6 +170,23 @@ Swagger UI provides an interactive interface for testing and exploring your API 
 
 - If the API request results in an error, Swagger UI will display the error details, including the status code and error message.
 - Carefully review the error message to troubleshoot and make necessary
+
+## Testing API Endpoints Using Postman
+
+Apart from using Swagger UI, you can also use Postman to test your Task Management App API endpoints. Here's how you can import the Swagger documentation into Postman for testing:
+
+1. **Import SwaggerJSON:**
+
+Open Postman and follow these steps:
+
+- Navigate to _`File>Import`_
+- Paste the swaggerdocs uri in the import field. By default the URL is:
+
+```bash
+http://localhost:3000/docs.json
+```
+
+- Click Import button
 
 ## Testing the API using JEST & supertest
 
