@@ -146,6 +146,31 @@ The API will be accesible on **`http://localhost:3000`**.
 - **Endpoint:** **`/tasks/`**
 - **Method:** DELETE
 
+## Testing API Endpoints using Swagger UI
+
+Swagger UI provides an interactive interface for testing and exploring your API endpoints. Follow the steps below to use Swagger UI and test the endpoints of the Task Management API.
+
+1. **Access Swagger Documentation:**
+   Open your web browser and navigate to the Swagger UI documentation page. Typically, you can access Swagger UI by appending `/docs` to the base URL of your application. Replace `http://localhost:3000` with your actual base URL.
+2. **Testing Endpoints**
+
+- Click on the endpoint you want to test. This will expand the endpoint - details and reveal the **_"Try it out"_** button.
+- Click the "Try it out" button next to the endpoint you selected.
+- If the endpoint requires any input parameters, provide the necessary values in the input fields provided.
+- Click the **_"Execute"_** button to send the API request.
+- You can do this for all available endpoints
+- If you want to modify the input parameters for an endpoint, simply update the values in the **_"Parameters"_** section and click **_"Execute"_** again.
+
+3. **View Responses:**
+
+- Once you execute the request, Swagger UI will display the response from the API, including the status code, response headers, and response body.
+- If the response includes a JSON body, you'll see it formatted for easy reading.
+
+4. **Errors and Troubleshooting:**
+
+- If the API request results in an error, Swagger UI will display the error details, including the status code and error message.
+- Carefully review the error message to troubleshoot and make necessary
+
 ## Testing the API using JEST & supertest
 
 Test for the endpoints were written in JEST and supertest
