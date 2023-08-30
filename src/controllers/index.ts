@@ -16,7 +16,7 @@ const getTasks = async (req: Request, res: Response): Promise<void> => {
     const tasks = tasksResult.rows;
     res.json(tasks);
   } catch (error) {
-    console.error("Error fetching tasks:", error);
+    console.log("Error fetching tasks:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 };
@@ -32,7 +32,7 @@ const getTaskById = async (req: Request, res: Response): Promise<void> => {
       res.status(200).json(task);
     }
   } catch (error) {
-    console.error("Error fetching task:", error);
+    console.log("Error fetching task:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 };
@@ -68,7 +68,7 @@ const createTask = async (req: Request, res: Response): Promise<void> => {
     const task = taskResult.rows[0];
     res.status(201).json(task);
   } catch (error) {
-    console.error("Error creating task:", error);
+    console.log("Error creating task:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 };
@@ -114,7 +114,7 @@ const updateTask = async (req: Request, res: Response): Promise<void> => {
     const updatedTask = taskResult.rows[0];
     res.status(200).json(updatedTask);
   } catch (error) {
-    console.error("Error updating task:", error);
+    console.log("Error updating task:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 };
@@ -135,7 +135,7 @@ const deleteTask = async (req: Request, res: Response): Promise<void> => {
     const deletedTask = taskResult.rows[0];
     res.status(204).json({ msg: "Task deleted" });
   } catch (error) {
-    console.error("Error deleting task:", error);
+    console.log("Error deleting task:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 };

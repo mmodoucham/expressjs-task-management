@@ -37,7 +37,7 @@ async function createTasksTable(): Promise<void> {
       console.log("Tasks table created");
     }
   } catch (error) {
-    console.error("Error checking/creating tasks table:", error);
+    console.log("Error checking/creating tasks table:", error);
   }
 }
 

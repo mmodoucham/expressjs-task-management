@@ -37,9 +37,9 @@ app.get("/healthcheck", (req: Request, res: Response) => {
 
 app.use("/api/tasks", tasksRouter);
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
   swaggerSetup(app, PORT);
 });
 
-export default app;
+module.exports = server;
