@@ -1,16 +1,17 @@
-const Pool = require("pg").Pool;
+require("dotenv").config();
+import { Pool } from "pg";
 
-const pool = new Pool({
-  user: "postgres",
-  host: "localhost",
-  database: "postgres",
-  password: "postgres",
-  port: 5432,
+const pool: Pool = new Pool({
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASS,
+  port: parseInt(process.env.DB_PORT as string, 10),
 });
 
-async function createTasksTable() {
+async function createTasksTable(): Promise<void> {
   try {
-    const checkTableQuery = `
+    const checkTableQuery: string = `
             SELECT EXISTS (
                 SELECT 1
                 FROM information_schema.tables
@@ -19,12 +20,12 @@ async function createTasksTable() {
         `;
 
     const result = await pool.query(checkTableQuery);
-    const tableExists = result.rows[0].exists;
+    const tableExists: boolean = result.rows[0].exists;
 
     if (tableExists) {
       console.log("Tasks table already exists");
     } else {
-      const createTableQuery = `
+      const createTableQuery: string = `
                 CREATE TABLE tasks (
                     id SERIAL PRIMARY KEY,
                     title VARCHAR(255) NOT NULL,
@@ -40,7 +41,4 @@ async function createTasksTable() {
   }
 }
 
-module.exports = {
-  pool,
-  createTasksTable,
-};
+export { pool, createTasksTable };
