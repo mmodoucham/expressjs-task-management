@@ -13,7 +13,7 @@ const options: swaggerJsdoc.Options = {
       description: "Task API Docs",
     },
   },
-  apis: ["app.ts", "./src/routes/*.ts"],
+  apis: ["index.ts", "./src/routes/*.ts"],
 };
 
 const swaggerSpec = swaggerJsdoc(options);

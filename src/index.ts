@@ -2,9 +2,9 @@ const express = require("express");
 require("dotenv").config();
 import { Request, Response } from "express";
 
-import { createTasksTable } from "./db";
-import tasksRouter from "./src/routes/index";
-import swaggerSetup from "./src/utils/swagger";
+import { createTasksTable } from "./db/index";
+import tasksRouter from "./routes/index";
+import swaggerSetup from "./utils/swagger";
 
 const app = express();
 const PORT: number = parseInt(process.env.PORT as string, 10) || 3000;

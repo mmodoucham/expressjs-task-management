@@ -10,4 +10,4 @@ COPY . .
 EXPOSE 3000
 
 # CMD npm start
-CMD [ "node", "app.ts" ]
+CMD [ "node","src", "index.ts" ]

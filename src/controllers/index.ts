@@ -8,7 +8,7 @@ import {
   deleteTaskQuery,
 } from "../queries";
 
-const pool: Pool = require("../../db").pool;
+const pool: Pool = require("../db/index").pool;
 
 const getTasks = async (req: Request, res: Response): Promise<void> => {
   try {
