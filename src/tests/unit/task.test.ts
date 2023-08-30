@@ -5,8 +5,8 @@ import {
   createTask,
   updateTask,
   deleteTask,
-} from "../controllers";
-import * as dbIndex from "../db/index";
+} from "../../controllers";
+import * as dbIndex from "../../db/index";
 
 jest.mock("pg", () => {
   const mQuery = jest.fn();
