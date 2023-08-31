@@ -27,25 +27,43 @@ npm install
 
 ## Setting Up the Database for Your API
 
-Before proceeding, make sure you have PostgreSQL installed and all packages installed
+Before proceeding, make sure you have PostgreSQL installed and all packages installed.
 
 Open the `db.js` file in your project. This file contains the configuration for connecting to the PostgreSQL database.
 
 ```javascript
 const pool = new Pool({
-  user: "postgres",
-  host: "localhost",
-  database: "postgres",
-  password: "postgres",
-  port: 5432,
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASS,
+  port: process.env.DB_PORT,
 });
 ```
 
-- Replace `"postgres"` with your PostgreSQL username.
-- Replace `"localhost"` with the hostname of your PostgreSQL server.
-- Replace `"postgres"` with the name of the database you want to use.
-- Update `"postgres"` with your PostgreSQL password.
-- Adjust the port if your PostgreSQL server is running on a different port.
+- Set up your environment variables by creating a .env file in your project directory if you don't have one.
+- Update the `.env `file with the following values:
+
+```env
+# Node environment
+NODE_ENV=development
+
+# The port your application will run on
+PORT=3000  # Replace with your desired port number
+
+# PostgresDB configuration
+DB_HOST=localhost  # Replace with your PostgreSQL host
+DB_USER=your_username  # Replace with your PostgreSQL username
+DB_PASS=your_password  # Replace with your PostgreSQL password
+DB_NAME=your_database  # Replace with the name of your PostgreSQL database
+DB_PORT=5432  # Replace with the port your PostgreSQL is running on
+
+#Docker configuration
+DOCKER_DB_HOST=your_docker_db_host
+```
+
+- Replace the placeholders (`your_username`, `your_password`, `your_database`, `your_docker_db_host`, etc.) with your actual PostgreSQL and application-specific values.
+- Adjust any other settings according to your specific configuration.
 
 ## API Endpoints
 
@@ -53,10 +71,12 @@ const pool = new Pool({
 To run the API, use the following command:
 
 ```bash
-nodemon app.js
+npm run dev
 ```
 
 The API will be accesible on **`http://localhost:3000`**.
+
+To test the server, you can query http://localhost:3000/api/health using Postman or just copy it in the address bar in your browser. If the server is running, you should receive `"API is up and running"` as response.
 
 ### Get All Tasks
 
@@ -188,22 +208,68 @@ http://localhost:3000/docs.json
 
 - Click Import button
 
-## Testing the API using JEST & supertest
+## Unit & e2e testing with Jest
 
-Test for the endpoints were written in JEST and supertest
-To run the test cases, Use the following command:
-
-```bash
-npm run test
-```
-
+Two test suites were written. One for end-to-end testing and another for unit testing the controller functions.
+Please note the following before running the tests.
 **Note:**
 
 - Please make sure the app is not running before runnign the tests.
-- Please edit the file `app.test.js` Line 10 to select the ID of the test to be updated and deleted to avoid flakiness.
+- Please edit the file `src/tests/e2e/e2e.test.ts` Line 10 to select the ID of the test to be updated and deleted to avoid flakiness.
 
 ```javascript
   const testTaskID = //ID here;
 ```
 
-- Please make sure there are couple of items available on the database before running the tests suite
+- Please make sure there are couple of items available on the database before running the tests suite.
+
+**Running both Test Suites**
+Use the command below to run both the e2e and unit tests suites at once
+
+```bash
+npm run test
+```
+
+**Running e2e Test Suite**
+Use the command below to run the e2e test suite only.
+
+```bash
+npm run test:e2e
+```
+
+**Running the unit test Suite**
+Use the command below to run the unit test suite only.
+
+```bash
+npm run test:unit
+```
+
+## Building and Testing the API with Docker Compose
+
+Docker Compose is a tool that enables you to define and manage multi-container Docker applications. In your case, you already have Dockerfile configurations and a `docker-compose.yml` file to streamline the process.
+
+1. **Install Docker Compose:**
+   If you don't have Docker Compose installed, you can follow the installation instructions provided on the [Docker Compose website](https://docs.docker.com/compose/install/).
+
+2. **Navigate to Project Directory:**
+   Open a terminal and navigate to the base directory containing the `Dockerfile` and `docker-compose.yml`.
+
+3. **Build and Start Containers:**
+   Run the following command to build and start the containers defined in the `docker-compose.yml` file:
+
+   ```sh
+   docker-compose up --build
+   ```
+
+4. **Access the API:**  
+   Once the containers are up and running, your API should be accessible through a web browser or API client at the specified port, which is likely the same as what's defined in your `.env` file.
+5. **Stopping the Containers:**
+   When you're finished testing, you can stop the containers gracefully by returning to the terminal and pressing `Ctrl+C`
+6. **Cleaning Up:**
+   To remove the containers and clean up resources, run the following command:
+
+```sh
+docker-compose down
+```
+
+- This command will stop and remove the containers, networks, and volumes defined in your docker-compose.yml file.

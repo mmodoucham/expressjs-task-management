@@ -22,7 +22,7 @@ app.get("/", (req: Request, res: Response) => {
 
 /**
  * @swagger
- * /healthcheck:
+ * /api/health:
  *  get:
  *     tags:
  *     - Healthcheck
@@ -31,7 +31,7 @@ app.get("/", (req: Request, res: Response) => {
  *       200:
  *         description: API is up and running
  */
-app.get("/healthcheck", (req: Request, res: Response) => {
+app.get("/api/health", (req: Request, res: Response) => {
   res.status(200).send("API is up and running");
 });
 
